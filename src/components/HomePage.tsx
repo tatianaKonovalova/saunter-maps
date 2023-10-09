@@ -57,8 +57,8 @@ const HomePage: React.FC = () => {
                         <FaSearch />
                     </InputGroup.Text>
                 </InputGroup>
-                {searchRoutes.length === 0 ? (
-                    <h2>There is no routes yet.</h2>
+                { searchRoutes.length === 0 ? (
+                    <h4>No routes...</h4>
                 ) : ( 
                     searchRoutes.map((route) => (
                         <RouteItem 

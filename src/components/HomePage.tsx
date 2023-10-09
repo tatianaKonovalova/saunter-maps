@@ -57,7 +57,9 @@ const HomePage: React.FC = () => {
                         <FaSearch />
                     </InputGroup.Text>
                 </InputGroup>
-                {searchRoutes && 
+                {searchRoutes.length === 0 ? (
+                    <h2>There is no routes yet.</h2>
+                ) : ( 
                     searchRoutes.map((route) => (
                         <RouteItem 
                             key={route.id}
@@ -67,7 +69,8 @@ const HomePage: React.FC = () => {
                             isFavorite={route.isFavorite}
                             choseRoute={ () => showRouteDetails(route.id)}
                         />
-                    ))}
+                    ))) 
+                }
             </Col>
             <Col md={6}>
                 {(showRoute && selectedRoute) && 

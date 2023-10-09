@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
                     ))}
             </Col>
             <Col md={6}>
-                {showRoute && 
+                {(showRoute && selectedRoute) && 
                     <RouteDetails 
                         id={selectedRoute.id}
                         title={selectedRoute.title}

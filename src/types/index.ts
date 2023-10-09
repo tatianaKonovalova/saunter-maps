@@ -5,10 +5,19 @@ export interface RouteMarkerType {
 
 export interface RouteInfoType {
     title: string,
-    shortDescription?: string,
+    shortDescription: string,
     fullDescription: string,
     markers: RouteMarkerType[]
     distance: number,
-    isFavorite?: boolean,
-    id?: string
+    isFavorite: boolean,
+    id: string
+}
+
+export interface CreateRouteType {
+    title: string,
+    shortDescription: string,
+    fullDescription: string,
+    markers: RouteMarkerType[]
+    distance: number,
+    isFavorite: boolean,
 }

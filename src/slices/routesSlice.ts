@@ -2,12 +2,12 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addDoc, collection, doc, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
 
 import { db } from '../config/firebase';
-import { RouteInfoType } from "../types";
+import { CreateRouteType, RouteInfoType } from "../types";
 import { sortRoutesByFavorite } from "../helpers";
 
 export const createRoute = createAsyncThunk(
     'routes/createRoute',
-    async (route: RouteInfoType) => {
+    async (route: CreateRouteType) => {
         const newRouteRef = await addDoc(collection(db, "routes"), route);
         const newRoute = {id: newRouteRef.id, ...route};
         return newRoute;
@@ -48,12 +48,12 @@ export const toggleIsFavorite = createAsyncThunk(
 
 interface InitialStateType {
     routes: RouteInfoType[],
-    error: string | null
+    error: string | undefined
 }
 
 const initialState: InitialStateType = {
     routes: [],
-    error: null
+    error: undefined
 }
 
 const routesSlice = createSlice({

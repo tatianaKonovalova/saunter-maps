@@ -22,7 +22,7 @@ const Map: React.FC<MapProps> = ({markers, handleSetMarker, setDistance}) => {
     })
 
     const [map, setMap] = useState<google.maps.Map | null>(null)
-    const [directions, setDirections] = useState(null);
+    const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
 
     const onLoad = useCallback((map: google.maps.Map) => {
         setMap(map);
@@ -47,8 +47,9 @@ const Map: React.FC<MapProps> = ({markers, handleSetMarker, setDistance}) => {
                 if (status === google.maps.DirectionsStatus.OK) {
                     setDirections(result);
 
-                    const distance = result.routes[0].legs.reduce((acc, item) => acc += item.distance.value, 0);
-                    setDistance && setDistance(Number((distance / 1000).toFixed(2)));
+                    //@ts-ignore
+                    const distance = result?.routes[0].legs.reduce((acc, item) => acc += item.distance.value, 0);
+                    setDistance && distance && setDistance(Number((distance / 1000).toFixed(2)));
                 } else {
                     console.error(result);
                 }

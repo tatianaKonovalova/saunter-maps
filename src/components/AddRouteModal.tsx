@@ -29,6 +29,7 @@ const AddRouteModal: React.FC<ModalProps> = ({ show, onHide }) => {
     const error = useAppSelector((state) => state.routes.error);
 
     const handleSetMarker = (e: google.maps.MapMouseEvent) => {
+        if (!e.latLng) return;
         const { lat, lng } = e.latLng;
         setMarkers([...markers, { lat: lat(), lng: lng() }]);
     }
